@@ -1,0 +1,15 @@
+[
+  {
+    "name": "John Doe",
+    "ssn": "123-45-6789",
+    "addresses": [
+      {"street": "123 Oak St", "city": "Dallas", "state": "TX", "zip": "75001", "from": "2020-01-01"}
+    ],
+    "cars": [
+      {"make": "Toyota", "model": "Camry", "year": "2019", "color": "Blue"}
+    ],
+    "licenses": [
+      {"profession": "Engineer", "agency": "Texas Board of Engineers", "number": "E12345"}
+    ]
+  }
+]
