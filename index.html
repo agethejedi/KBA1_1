@@ -1,0 +1,78 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>RiskXLabs KBA — Server-Validated</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header class="rxl-header">
+  <div class="brand"><span class="logo">🛡️🧪</span><span class="wordmark">Risk<span class="x">X</span>Labs</span></div>
+  <div class="tag">We Fight Fraud</div>
+</header>
+
+<main class="container">
+  <section class="card">
+    <h2>Upload Dataset (JSON)</h2>
+    <div style="display:flex;gap:8px;align-items:center">
+      <input id="file" type="file" accept=".json">
+      <button id="upload" class="btn primary">Upload</button>
+      <span id="ds" class="status-pill"></span>
+    </div>
+    <p class="hint">Server stores dataset in-memory with TTL; nothing is stored in the browser.</p>
+  </section>
+
+  <section class="card">
+    <h3>Policy Controls</h3>
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap:10px">
+      <div class="field"><span>Real-estate questions</span><input id="pc_re_count" type="number" min="0" value="2"></div>
+      <div class="field"><span>Vehicle questions</span><input id="pc_v_count" type="number" min="0" value="1"></div>
+      <div class="field"><span>License questions</span><input id="pc_l_count" type="number" min="0" value="1"></div>
+      <div class="field"><span>Vehicle attrs (comma)</span><input id="pc_v_attrs" value="color,model,make,year"></div>
+      <div class="field"><span>RE fields (comma)</span><input id="pc_re_fields" value="street,move_in_year,city,zip"></div>
+      <div class="field"><span>License fields (comma)</span><input id="pc_l_fields" value="agency,profession,number"></div>
+      <div class="field"><span>Global pass ≥</span><input id="pc_pass" type="number" min="1" value="3"></div>
+      <div class="field"><span>Fail if wrong+declined ≥</span><input id="pc_fail" type="number" min="1" value="2"></div>
+      <div class="field"><span>Per-class minimums (re,veh,lic)</span><input id="pc_class_mins" value="0,0,0"></div>
+    </div>
+    <div style="margin-top:10px"><button id="savePolicy" class="btn primary">Save Policy</button></div>
+  </section>
+
+  <section class="card">
+    <h3>Start KBA Session</h3>
+    <div class="grid">
+      <label class="field">
+        <span>Customer ID</span>
+        <div class="masked-input">
+          <input id="custId" type="password" inputmode="text" autocomplete="off" placeholder="Enter Customer ID"/>
+          <button id="toggleCust" class="btn ghost" type="button" aria-label="Show/Hide">👁️</button>
+        </div>
+      </label>
+      <label class="field">
+        <span>SSN</span>
+        <div class="masked-input">
+          <input id="ssn" type="password" inputmode="numeric" autocomplete="off" placeholder="###-##-####"/>
+          <button id="toggleSSN" class="btn ghost" type="button" aria-label="Show/Hide">👁️</button>
+        </div>
+      </label>
+      <button id="start" class="btn">Generate Questions</button>
+    </div>
+    <div id="who" class="hint" style="margin-top:8px"></div>
+  </section>
+
+  <section id="qa" class="card hidden">
+    <h3>Answer the Questions (fill-in)</h3>
+    <div id="qList" class="q-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button id="submit" class="btn primary">Submit</button>
+    </div>
+    <div id="result" class="result" style="margin-top:12px"></div>
+  </section>
+</main>
+
+<footer class="rxl-footer"><span>Risk<span class="x">X</span>Labs KBA · Prototype</span></footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
